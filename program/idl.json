@@ -1,0 +1,249 @@
+{
+  "version": "0.0.0",
+  "name": "handshake_program",
+  "instructions": [
+    {
+      "name": "Accept",
+      "accounts": [
+        {
+          "name": "handshake",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Handshake account"
+          ]
+        },
+        {
+          "name": "asset",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Asset account"
+          ]
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true,
+          "docs": [
+            "The address to transfer the authority to (target)"
+          ]
+        },
+        {
+          "name": "recipient",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The account to receive the funds of storage fees"
+          ]
+        },
+        {
+          "name": "niftyAssetProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The nifty asset program"
+          ]
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "type": "u8",
+        "value": 0
+      }
+    },
+    {
+      "name": "Cancel",
+      "accounts": [
+        {
+          "name": "handshake",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Handshake account"
+          ]
+        },
+        {
+          "name": "asset",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Asset account"
+          ]
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true,
+          "docs": [
+            "The current authority of the asset (source)"
+          ]
+        },
+        {
+          "name": "recipient",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The account to receive the funds of storage fees"
+          ]
+        },
+        {
+          "name": "niftyAssetProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The nifty asset program"
+          ]
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "type": "u8",
+        "value": 1
+      }
+    },
+    {
+      "name": "Initiate",
+      "accounts": [
+        {
+          "name": "handshake",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The program derived address of the handshake account (seeds: ['handshake', asset])"
+          ]
+        },
+        {
+          "name": "asset",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Asset account"
+          ]
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true,
+          "docs": [
+            "The current authority of the asset"
+          ]
+        },
+        {
+          "name": "target",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The address to transfer the authority to"
+          ]
+        },
+        {
+          "name": "payer",
+          "isMut": false,
+          "isSigner": false,
+          "isOptional": true,
+          "docs": [
+            "The account paying for the storage fees"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "isOptional": true,
+          "docs": [
+            "The system program"
+          ]
+        },
+        {
+          "name": "niftyAssetProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The nifty asset program"
+          ]
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "type": "u8",
+        "value": 2
+      }
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Handshake",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "discriminator",
+            "type": {
+              "defined": "Discriminator"
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "asset",
+            "type": "publicKey"
+          },
+          {
+            "name": "source",
+            "type": "publicKey"
+          },
+          {
+            "name": "target",
+            "type": "publicKey"
+          },
+          {
+            "name": "recipient",
+            "type": "publicKey"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "Discriminator",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Uninitialized"
+          },
+          {
+            "name": "Handshake"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 0,
+      "name": "InvalidAccountLength",
+      "msg": "Invalid account length"
+    },
+    {
+      "code": 1,
+      "name": "AlreadyInitialized",
+      "msg": "Asset already initialized"
+    },
+    {
+      "code": 2,
+      "name": "PubkeyMismatch",
+      "msg": "Pubkey mismatch"
+    }
+  ],
+  "metadata": {
+    "origin": "shank",
+    "address": "HndshkSZWu1f4qdwyACwsP8YoBxvCzb7NNVB1Aj3w656",
+    "binaryVersion": "0.4.2",
+    "libVersion": "^0.4.2"
+  }
+}
